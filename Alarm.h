@@ -11,7 +11,7 @@
 
 
 bool motionDetection();
-bool deactivateAlarm();
+//bool deactivateAlarm(int idx, int pButton);
 
 #endif
 
