@@ -1,5 +1,3 @@
-// motionDetection.h
-
 #ifndef _MOTIONDETECTION_h
 #define _MOTIONDETECTION_h
 
@@ -9,9 +7,7 @@
 	#include "WProgram.h"
 #endif
 
-
 bool motionDetection();
-//bool deactivateAlarm(int idx, int pButton);
 
 #endif
 

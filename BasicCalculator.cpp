@@ -1,4 +1,3 @@
-
 class BasicCalculator {
 public:
     BasicCalculator() {}
