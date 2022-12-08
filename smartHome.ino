@@ -5,18 +5,19 @@ Sonar so;
 bool alarmOn = false;
 int buzzer = 8;
 int pinButton = 7;
-int panicButton = 8;
+int panicButton = 6;
 
 // The setup() function runs once each time the micro-controller starts
 void setup() {
     pinMode(buzzer, OUTPUT);
     pinMode(pinButton, INPUT_PULLUP);
+    pinMode(panicButton, INPUT);
     Serial.begin(9600);
 }
 
 // Add the main program code into the continuous loop() function
 void loop() { 
-    if (motionDetection() == true) {
+    if (motionDetection() == true || digitalRead(panicButton)) { //
         alarmOn = true;
         while (alarmOn) {
             digitalWrite(buzzer, HIGH); 
