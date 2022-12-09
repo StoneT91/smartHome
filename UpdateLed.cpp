@@ -4,8 +4,7 @@ void led(bool green, bool red) {
 	int pinLedGreen = 10;
 	int pinLedRed = 11;
 	pinMode(pinLedGreen, OUTPUT);
-	if (green == true) {
-		
+	if (green == true && red != true) {
 		digitalWrite(pinLedGreen, HIGH);
 	}
 	else {
@@ -13,7 +12,6 @@ void led(bool green, bool red) {
 	}
 
 	if (red == true) {
-
 		digitalWrite(pinLedRed, HIGH);
 	}
 	else {
