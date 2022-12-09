@@ -1,17 +1,16 @@
+#include "UpdateLed.h"
 #include "Buzzer.h"
 #include "UpdateNextion.h"
-#include "Alarm.h"
+#include "Detection.h"
 #include "Sonar.h"
 
 Sonar so;
 bool alarmStatus = false;
 bool systemStatus = false;
-
+int key = 4569;
 int panicButton = 6;
-int pinButton = 7;
 int buzzer = 8;
 int pinActivate = 9;
-int pinLedGreen = 10;
 int keyFromNextion;
 String receivedData = "";
 
@@ -23,9 +22,8 @@ union {
 // The setup() function runs once each time the micro-controller starts
 void setup() {
 	pinMode(buzzer, OUTPUT);
-	pinMode(pinButton, INPUT_PULLUP);
 	pinMode(panicButton, INPUT);
-	pinMode(pinLedGreen, OUTPUT);
+	
 	Serial.begin(9600);
 	Serial3.begin(9600);
 }
@@ -33,28 +31,20 @@ void setup() {
 // Add the main program code into the continuous loop() function
 void loop() {
 	updateNextion(alarmStatus, systemStatus);
-	
-	
-
-
 	if (digitalRead(pinActivate)) {
 		delay(5000);
 		systemStatus = true;
-		digitalWrite(pinLedGreen, HIGH);
+		led(true,false);
 		updateNextion(alarmStatus, systemStatus);
 	}
 	if ((motionDetection() || digitalRead(panicButton)) && systemStatus) {
 		alarmStatus = true;
-		digitalWrite(pinLedGreen, LOW);
+		led(false, true);
 
 		updateNextion(alarmStatus, systemStatus);
 
 		while (alarmStatus) {
 			buzzerOn(buzzer);
-			
-
-
-
 			if (Serial3.available()) {
 				receivedData += char(Serial3.read());
 				if (receivedData.length() > 4) {
@@ -67,17 +57,16 @@ void loop() {
 				value.charByte[2] = char(receivedData[2]);
 				value.charByte[3] = char(receivedData[3]);
 				keyFromNextion = value.valLong;
-				receivedData = "";
 				Serial.println(keyFromNextion);
+				receivedData = "";
 			}
 
-
-
-
-			if (digitalRead(pinButton)) {
+			if (key == keyFromNextion) {
+				keyFromNextion = 0;
 				alarmStatus = false;
 				systemStatus = false;
 				updateNextion(alarmStatus, systemStatus);
+				led(false, false);
 			}
 		}
 	}

@@ -106,17 +106,19 @@
     <None Include="smartHome.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Alarm.h" />
+    <ClInclude Include="Detection.h" />
     <ClInclude Include="Buzzer.h" />
     <ClInclude Include="Sonar.h" />
+    <ClInclude Include="UpdateLed.h" />
     <ClInclude Include="UpdateNextion.h" />
     <ClInclude Include="__vm\.smartHome.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Alarm.cpp" />
+    <ClCompile Include="Detection.cpp" />
     <ClCompile Include="BasicCalculator.cpp" />
     <ClCompile Include="Buzzer.cpp" />
     <ClCompile Include="Sonar.cpp" />
+    <ClCompile Include="UpdateLed.cpp" />
     <ClCompile Include="UpdateNextion.cpp" />
   </ItemGroup>
   <PropertyGroup>

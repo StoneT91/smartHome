@@ -24,7 +24,7 @@
     <ClInclude Include="Sonar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Alarm.h">
+    <ClInclude Include="Detection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UpdateNextion.h">
@@ -33,12 +33,15 @@
     <ClInclude Include="Buzzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UpdateLed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sonar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Alarm.cpp">
+    <ClCompile Include="Detection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BasicCalculator.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Buzzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateLed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
