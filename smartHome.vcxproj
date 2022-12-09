@@ -108,6 +108,7 @@
   <ItemGroup>
     <ClInclude Include="Detection.h" />
     <ClInclude Include="Buzzer.h" />
+    <ClInclude Include="ReceiveNextion.h" />
     <ClInclude Include="Sonar.h" />
     <ClInclude Include="UpdateLed.h" />
     <ClInclude Include="UpdateNextion.h" />
@@ -117,6 +118,7 @@
     <ClCompile Include="Detection.cpp" />
     <ClCompile Include="BasicCalculator.cpp" />
     <ClCompile Include="Buzzer.cpp" />
+    <ClCompile Include="ReceiveNextion.cpp" />
     <ClCompile Include="Sonar.cpp" />
     <ClCompile Include="UpdateLed.cpp" />
     <ClCompile Include="UpdateNextion.cpp" />

@@ -4,9 +4,11 @@
 
 #include "Buzzer.h"
 
-void buzzerOn(int pn) {
-	digitalWrite(pn, HIGH);
+void buzzerOn() {
+	int buzzer = 8;
+	pinMode(buzzer, OUTPUT);
+	digitalWrite(buzzer, HIGH);
 	delay(1);
-	digitalWrite(pn, LOW);
+	digitalWrite(buzzer, LOW);
 	delay(1);
 }
