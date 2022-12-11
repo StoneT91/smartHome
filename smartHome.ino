@@ -21,15 +21,8 @@ void setup() {
 void loop() {
 	updateNextion(alarmStatus, systemStatus);
 	led(systemStatus, alarmStatus);
-	
-	keyFromNextion = receivedFromNextion("b03");
-	if (keyFromNextion!=0) {
-		Serial.println(keyFromNextion);
-	}
-	//delay(2000);
-	//
-	if (digitalRead(pinActivate)) {
-		delay(5000);
+	if (digitalRead(pinActivate) || receivedFromNextion("b03") != 0) {
+		delay(receivedFromNextion("b03")*1000);
 		systemStatus = true;
 	}
 	if ((motionDetection() || digitalRead(panicButton)) && systemStatus) {
