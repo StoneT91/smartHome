@@ -18,7 +18,6 @@ void setup() {
 	Serial.begin(9600);
 	Serial3.begin(9600);
 }
-
 void loop() {
 	updateNextion(alarmStatus, systemStatus);
 	led(systemStatus, alarmStatus);
@@ -28,12 +27,14 @@ void loop() {
 	}
 	if ((motionDetection() || digitalRead(panicButton)) && systemStatus) {
 		alarmStatus = true;
+		
 		updateNextion(alarmStatus, systemStatus);
 		led(systemStatus, alarmStatus);
 		while (alarmStatus) {
 			buzzerOn();
 			keyFromNextion = receivedFromNextion();
 			if (key == keyFromNextion) {
+				Serial.println(keyFromNextion);
 				keyFromNextion = 0;
 				alarmStatus = false;
 				systemStatus = false;
