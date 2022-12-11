@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 
-int receivedFromNextion();
+int receivedFromNextion(String key);
 
 #endif
 

@@ -8,7 +8,7 @@
 Sonar so;
 bool alarmStatus = false;
 bool systemStatus = false;
-int key = 4569;
+int masterKey = 4569;
 int keyFromNextion;
 int panicButton = 6;
 int pinActivate = 9;
@@ -21,6 +21,13 @@ void setup() {
 void loop() {
 	updateNextion(alarmStatus, systemStatus);
 	led(systemStatus, alarmStatus);
+	
+	keyFromNextion = receivedFromNextion("b03");
+	if (keyFromNextion!=0) {
+		Serial.println(keyFromNextion);
+	}
+	//delay(2000);
+	//
 	if (digitalRead(pinActivate)) {
 		delay(5000);
 		systemStatus = true;
@@ -32,8 +39,8 @@ void loop() {
 		led(systemStatus, alarmStatus);
 		while (alarmStatus) {
 			buzzerOn();
-			keyFromNextion = receivedFromNextion();
-			if (key == keyFromNextion) {
+			keyFromNextion = receivedFromNextion("b15");
+			if (masterKey == keyFromNextion) {
 				Serial.println(keyFromNextion);
 				keyFromNextion = 0;
 				alarmStatus = false;
