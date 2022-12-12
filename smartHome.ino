@@ -10,24 +10,22 @@ bool alarmStatus = false;
 bool systemStatus = false;
 int masterKey = 4569;
 int keyFromNextion;
-int panicButton = 6;
-int pinActivate = 9;
 
 void setup() {
-	pinMode(panicButton, INPUT);
 	Serial.begin(9600);
 	Serial3.begin(9600);
 }
 void loop() {
-	updateNextion(alarmStatus, systemStatus);
-	led(systemStatus, alarmStatus);
-	if (digitalRead(pinActivate) || receivedFromNextion("b03") != 0) {
-		delay(receivedFromNextion("b03")*1000);
+	keyFromNextion = receivedFromNextion("b03");
+	if (keyFromNextion > 0) {
+		Serial.println(keyFromNextion);
 		systemStatus = true;
+		updateNextion(alarmStatus, systemStatus);
+		led(systemStatus, alarmStatus);
 	}
-	if ((motionDetection() || digitalRead(panicButton)) && systemStatus) {
+
+	if (motionDetection() && systemStatus) {
 		alarmStatus = true;
-		
 		updateNextion(alarmStatus, systemStatus);
 		led(systemStatus, alarmStatus);
 		while (alarmStatus) {
@@ -38,7 +36,10 @@ void loop() {
 				keyFromNextion = 0;
 				alarmStatus = false;
 				systemStatus = false;
+				updateNextion(alarmStatus, systemStatus);
+				led(systemStatus, alarmStatus);
 			}
 		}
 	}
+	delay(10);
 }
