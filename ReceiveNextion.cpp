@@ -7,8 +7,8 @@ union {
 } value;
 
 int receivedFromNextion(String key) {
-	if (Serial.available()) {
-		receivedData += char(Serial.read());
+	if (Serial3.available()) {
+		receivedData += char(Serial3.read());
 		if ((receivedData.length() > 7) || (receivedData.substring(0, 1) != "b")) {
 			receivedData = "";
 		}

@@ -13,7 +13,7 @@ int keyFromNextion;
 
 void setup() {
 	Serial.begin(9600);
-	//Serial3.begin(9600);
+	Serial3.begin(9600);
 }
 void loop() {
 	keyFromNextion = receivedFromNextion("b03");
