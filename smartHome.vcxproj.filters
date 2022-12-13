@@ -44,9 +44,6 @@
     <ClCompile Include="Sonar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Detection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BasicCalculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ReceiveNextion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Detection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

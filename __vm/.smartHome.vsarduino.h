@@ -6,7 +6,7 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: uPesy ESP32 Wroom DevKit                                                                                               (expressif_uPesy_wroom), Platform=esp32, Package=expressif
+	Hardware: ESP32 Wrover Kit (all versions)                                                                                           (esp32_esp32wroverkit), Platform=esp32, Package=esp32
 */
 
 #if defined(_VMICRO_INTELLISENSE)
@@ -20,18 +20,19 @@
 #define UNITY_INCLUDE_CONFIG_H 1
 #define WITH_POSIX 1
 #define _GNU_SOURCE 1
-#define IDF_VER "v4.4.3"
+#define IDF_VER "v4.4.2"
 #define ESP_PLATFORM 1
 #define _POSIX_READER_WRITER_LOCKS 1
 #define F_CPU 240000000L
 #define ARDUINO 108010
-#define ARDUINO_uPesy_WROOM 1
+#define ARDUINO_ESP32_WROVER_KIT 1
 #define ARDUINO_ARCH_ESP32 1
-#define ARDUINO_BOARD "uPesy_WROOM"
-#define ARDUINO_VARIANT "uPesy_esp32_wroom_devkit"
+#define ARDUINO_BOARD "ESP32_WROVER_KIT"
+#define ARDUINO_VARIANT "esp32"
 #define ARDUINO_PARTITION_default 1
 #define ESP32 1
 #define CORE_DEBUG_LEVEL 0
+#define BOARD_HAS_PSRAM 1
 #define ARDUINO_USB_CDC_ON_BOOT 0
 #define __cplusplus 201103L
 

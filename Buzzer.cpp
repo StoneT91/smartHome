@@ -5,7 +5,7 @@
 #include "Buzzer.h"
 
 void buzzerOn() {
-	int buzzer = 8;
+	int buzzer = 26;
 	pinMode(buzzer, OUTPUT);
 	digitalWrite(buzzer, HIGH);
 	delay(1);
