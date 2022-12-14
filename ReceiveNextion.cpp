@@ -8,7 +8,9 @@ union {
 
 int receivedFromNextion(String key) {
 	if (Serial2.available()) {
+		//Serial.println(xy, HEX);
 		receivedData += char(Serial2.read());
+
 		if ((receivedData.length() > 7) || (receivedData.substring(0, 1) != "b")) {
 			receivedData = "";
 		}
@@ -18,8 +20,6 @@ int receivedFromNextion(String key) {
 		value.charByte[1] = char(receivedData[4]);
 		value.charByte[2] = char(receivedData[5]);
 		value.charByte[3] = char(receivedData[6]);
-
-		receivedData = "";
 		return value.valLong;
 	}
 	else {

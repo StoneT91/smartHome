@@ -8,7 +8,7 @@
 #else
 	#include "WProgram.h"
 #endif
+void updateLed(int sA);
 
-void led(bool green, bool red);
 #endif
 

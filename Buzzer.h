@@ -8,6 +8,5 @@
 #else
 	#include "WProgram.h"
 #endif
-void buzzerOn();
-
+void buzzer(int sA);
 #endif

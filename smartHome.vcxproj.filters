@@ -33,10 +33,19 @@
     <ClInclude Include="Buzzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UpdateLed.h">
+    <ClInclude Include="Led.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ReceiveNextion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicAlarm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sendToNextion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +62,22 @@
     <ClCompile Include="Buzzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UpdateLed.cpp">
+    <ClCompile Include="Led.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ReceiveNextion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Detection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicAlarm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sendToNextion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
