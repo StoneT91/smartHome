@@ -12,7 +12,7 @@
 class BME280 {
 public:
 	Adafruit_BME280 bme280;
-	void measureBme280();
+	void measureBme280(int cRT, int dly);
 	float currentValueBme280[3] = {};
 	int updateTimeBME280 = 0;
 };

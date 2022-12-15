@@ -26,12 +26,7 @@ void loop() {
 	currentRunTime = millis();
 	nx.serialInterface(Alarm, currentRunTime);
 	la.logicAlarm(masterKey, &nx, so);
-	//Serial.println(currentRunTime);
-	//Serial.println(bm.lastUpdateTime);
-	if ((currentRunTime - bm.updateTimeBME280) >2000){
-		bm.measureBme280();
-	}
-	
+	bm.measureBme280(currentRunTime, 2000);	
 	Alarm = la.statusAlarm;
 	for (int i = 0; i < 10; i++){
 		updateLed(la.statusAlarm);
