@@ -1,9 +1,10 @@
 #include "Nextion.h"
 
-void Nextion::readSerialInterface(int Alarm) {
+void Nextion::serialInterface(int Alarm, int cRT) {
 	if (Serial2.available()) {
+		//receive============================================================================================
 		data += char(Serial2.read());
-		if (data.substring(0,1) =="b" && data.length() <= 9) {
+		if (data.substring(0, 1) == "b" && data.length() <= 9) {
 			if (data.length() == stringLength) {
 				value.charByte[0] = char(data[1]);
 				value.charByte[1] = char(data[2]);
@@ -17,7 +18,7 @@ void Nextion::readSerialInterface(int Alarm) {
 				value.charByte[3] = char(data[8]);
 				val = value.valLong;
 
-				buttonValue[num] = val;				
+				buttonValue[num] = val;
 				data = "";
 			}
 		}
@@ -26,17 +27,7 @@ void Nextion::readSerialInterface(int Alarm) {
 		}
 	}
 	else {
-		if (Alarm!=0) {
-			Serial2.print("j3.val=");
-			Serial2.print(100);
-			reset();
-		}
-		else {
-			Serial2.print("j3.val=");
-			Serial2.print(0);
-			reset();
-		}
-
+		//send============================================================================================
 		if (Alarm == 1 && buttonValue[1] != 0) {
 			Serial.println(buttonValue[1]);
 			for (int i = 0; i < 100; i++) {
@@ -48,6 +39,26 @@ void Nextion::readSerialInterface(int Alarm) {
 			buttonValue[1] = 0;
 			Serial2.print("j0.val=");
 			Serial2.print(0);
+			reset();
+		}
+		if (cRT - updateTimeNextion > 500) {
+			updateTimeNextion = millis();
+			if (Alarm != 0) {
+				Serial2.print("j3.val=");
+				Serial2.print(100);
+				reset();
+			}
+			else {
+				Serial2.print("j3.val=");
+				Serial2.print(0);
+				reset();
+			}
+			//BME280======================================================================0
+			Serial2.print("tempInside.txt=" + cmd + 0 + cmd); //
+			reset();
+			Serial2.print("humInside.txt=" + cmd + 1 + cmd);
+			reset();
+			Serial2.print("presInside.txt=" + cmd + 2 + cmd);
 			reset();
 		}
 	}

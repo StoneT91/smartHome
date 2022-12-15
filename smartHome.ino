@@ -1,3 +1,4 @@
+#include "BME280.h"
 #include "LogicAlarm.h"
 #include "Nextion.h"
 #include "Sonar.h"
@@ -10,9 +11,11 @@
 Nextion nx;
 Sonar so;
 LogicAlarm la;
+BME280 bm;
 
 int masterKey = 4569;
 int Alarm;
+int currentRunTime;
 
 void setup() {
 	Serial.begin(9600);
@@ -20,12 +23,18 @@ void setup() {
 	//Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
 }
 void loop() {
-	nx.readSerialInterface(Alarm);
+	currentRunTime = millis();
+	nx.serialInterface(Alarm, currentRunTime);
 	la.logicAlarm(masterKey, &nx, so);
+	//Serial.println(currentRunTime);
+	//Serial.println(bm.lastUpdateTime);
+	if ((currentRunTime - bm.updateTimeBME280) >2000){
+		bm.measureBme280();
+	}
+	
 	Alarm = la.statusAlarm;
 	for (int i = 0; i < 10; i++){
 		updateLed(la.statusAlarm);
 		buzzer(la.statusAlarm);
 	}
-	
 }

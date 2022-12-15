@@ -1,8 +1,9 @@
-#include "pch.h"
 #include "CppUnitTest.h"
 #include <stdbool.h> 
 #include "../BasicCalculator.cpp"
-#include "../UpdateLed.h"
+#include "../LogicAlarm.h"
+#include "../Sonar.h"
+#include "../Nextion.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -21,14 +22,22 @@ namespace UnitTests
             actual = myCalc.addTwoNumbers(0, -5);
             Assert::AreEqual(-5, actual);
         }
-
-        TEST_METHOD(TestLed)
+        
+        TEST_METHOD(TestLogicAlarm)
         {
-            int actual = myCalc.addTwoNumbers(1, 2);
-            Assert::AreEqual(3, actual);
+            //arrange
+            int masterKey = 4569;
+            LogicAlarm la;
+            Nextion nx;
+            Sonar so;
+            la.statusAlarm = 2;
+            nx.buttonValue[2] = 4569;
+            
+            //act
+            la.logicAlarm(masterKey, &nx, so);
 
-            actual = myCalc.addTwoNumbers(0, -5);
-            Assert::AreEqual(-5, actual);
+            //assert
+            Assert::AreEqual(0, la.statusAlarm);
         }
 
 

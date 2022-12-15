@@ -6,8 +6,8 @@
 #else
 	#include "WProgram.h"
 #endif
-
-class Nextion{
+#include "BME280.h"
+class Nextion {
 public:
 	String data;
 	union {
@@ -18,8 +18,10 @@ public:
 	int val;
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
-	void readSerialInterface(int Alarm);
+	int updateTimeNextion = 0;
+	void serialInterface(int Alarm, int cRT);
 	void reset();
+	String cmd = "\"";
 };
 
 #endif

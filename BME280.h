@@ -8,7 +8,13 @@
 #else
 	#include "WProgram.h"
 #endif
-
-
+#include <Adafruit_BME280.h>
+class BME280 {
+public:
+	Adafruit_BME280 bme280;
+	void measureBme280();
+	float currentValueBme280[3] = {};
+	int updateTimeBME280 = 0;
+};
 #endif
 

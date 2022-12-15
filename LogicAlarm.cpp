@@ -1,7 +1,7 @@
 #include "LogicAlarm.h"
 
 void LogicAlarm::logicAlarm(int mK,Nextion *nx, Sonar so) {
-	statusBefore = statusAlarm;
+	//statusBefore = statusAlarm;
 	if (statusAlarm == 0 && nx->buttonValue[1] != 0) {
 		statusAlarm = 1;
 	}
