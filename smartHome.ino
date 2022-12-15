@@ -14,7 +14,6 @@ LogicAlarm la;
 
 int statusAlarm;
 int masterKey = 4569;
-int temp = 0;
 
 void setup() {
 	Serial.begin(9600);
@@ -23,25 +22,15 @@ void setup() {
 }
 void loop() {
 	bn.readSerialInterface();
-	
-
-	//Serial.println("bn.buttonValue[1]");
-	//Serial.println(bn.buttonValue[1]);
-	//Serial.println("bn.buttonValue[2]");
-	//Serial.println(bn.buttonValue[2]);
-	//Serial.println("la.statusAlarm");
-	//Serial.println(la.statusAlarm);
-	// 
-	if (bn.buttonValue[1] != 0 || bn.buttonValue[2]!=0) {
-		sendToNextion(la);
-	}
-	la.logicAlarm(masterKey, &bn, so);
-
-	
-	//for (int i = 0; i < 1000; i++) {
-		updateLed(la.statusAlarm);
-		buzzer(la.statusAlarm);
+	//if (bn.buttonValue[1] != 0 || bn.buttonValue[2]!=0) {
+		//sendToNextion(la);
 	//}
+	la.logicAlarm(masterKey, &bn, so);
+	updateLed(la.statusAlarm);
+	buzzer(la.statusAlarm);
+	Serial.println(la.statusAlarm);
+	Serial.println(bn.buttonValue[1]);
+	//delay(1000);
 
 
 

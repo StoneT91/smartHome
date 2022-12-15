@@ -1,9 +1,12 @@
 #include "LogicAlarm.h"
 
 void LogicAlarm::logicAlarm(int mK,Button *bn, Sonar so) {
-	if (statusAlarm == 0 && bn->buttonValue[1] == 1) {
+	if (statusAlarm == 0 && bn->buttonValue[1] != 0) {
 		bn->buttonValue[1] = 0;
 		statusAlarm = 1;
+	}
+	else if (statusAlarm == 1 && bn->buttonValue[1] != 0){
+		bn->buttonValue[1] = 0;
 	}
 	else if (statusAlarm == 1 && so.measure(2, 3, 500) != 500) {
 		statusAlarm = 2;

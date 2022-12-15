@@ -19,6 +19,7 @@ void Button::readSerialInterface() {
 
 				buttonValue[num] = val;
 				Serial.println(buttonValue[num]);
+				
 				data = "";
 			}
 		}
