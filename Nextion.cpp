@@ -1,6 +1,6 @@
 #include "Nextion.h"
 
-void Button::readSerialInterface(int Alarm) {
+void Nextion::readSerialInterface(int Alarm) {
 	if (Serial2.available()) {
 		data += char(Serial2.read());
 		if (data.substring(0,1) =="b" && data.length() <= 9) {
@@ -29,16 +29,12 @@ void Button::readSerialInterface(int Alarm) {
 		if (Alarm!=0) {
 			Serial2.print("j3.val=");
 			Serial2.print(100);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
+			reset();
 		}
 		else {
 			Serial2.print("j3.val=");
 			Serial2.print(0);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
+			reset();
 		}
 
 		if (Alarm == 1 && buttonValue[1] != 0) {
@@ -46,17 +42,19 @@ void Button::readSerialInterface(int Alarm) {
 			for (int i = 0; i < 100; i++) {
 				Serial2.print("j0.val=");
 				Serial2.print(i);
-				Serial2.write(0xFF);
-				Serial2.write(0xFF);
-				Serial2.write(0xFF);
+				reset();
 				delay(buttonValue[1] * 10);
 			}
 			buttonValue[1] = 0;
 			Serial2.print("j0.val=");
 			Serial2.print(0);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
-			Serial2.write(0xFF);
+			reset();
 		}
 	}
+}
+
+void Nextion::reset() {
+	Serial2.write(0xFF);
+	Serial2.write(0xFF);
+	Serial2.write(0xFF);
 }

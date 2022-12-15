@@ -7,7 +7,7 @@
 	#include "WProgram.h"
 #endif
 
-class Button{
+class Nextion{
 public:
 	String data;
 	union {
@@ -19,6 +19,7 @@ public:
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 	void readSerialInterface(int Alarm);
+	void reset();
 };
 
 #endif

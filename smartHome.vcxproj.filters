@@ -36,6 +36,9 @@
     <ClInclude Include="LogicAlarm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BME280.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sonar.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LogicAlarm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BME280.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

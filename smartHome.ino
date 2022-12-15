@@ -7,7 +7,7 @@
 //#define RXD2 32
 //#define TXD2 33
 
-Button bn;
+Nextion nx;
 Sonar so;
 LogicAlarm la;
 
@@ -20,11 +20,12 @@ void setup() {
 	//Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
 }
 void loop() {
-	bn.readSerialInterface(Alarm);
-	la.logicAlarm(masterKey, &bn, so);
+	nx.readSerialInterface(Alarm);
+	la.logicAlarm(masterKey, &nx, so);
 	Alarm = la.statusAlarm;
-	updateLed(la.statusAlarm);
-	buzzer(la.statusAlarm);
-	//Serial.println(la.statusAlarm);
-	//Serial.println(bn.buttonValue[1]);
+	for (int i = 0; i < 10; i++){
+		updateLed(la.statusAlarm);
+		buzzer(la.statusAlarm);
+	}
+	
 }

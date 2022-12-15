@@ -10,13 +10,13 @@
 #endif
 
 #include "Sonar.h"
-#include "Button.h"
+#include "Nextion.h"
 
 class LogicAlarm {
 public:
 	int statusAlarm = 0;
 	int statusBefore = 0;	
-	void logicAlarm(int mK, Button* bn, Sonar so);
+	void logicAlarm(int mK, Nextion* nx, Sonar so);
 };
 
 #endif
