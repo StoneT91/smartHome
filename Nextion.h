@@ -1,5 +1,3 @@
-// SerialInterface.h
-
 #ifndef _SERIALINTERFACE_h
 #define _SERIALINTERFACE_h
 
@@ -20,7 +18,7 @@ public:
 	int val;
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
-	void readSerialInterface();
+	void readSerialInterface(int Alarm);
 };
 
 #endif

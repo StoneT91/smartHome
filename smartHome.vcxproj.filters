@@ -30,13 +30,10 @@
     <ClInclude Include="Led.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="Nextion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LogicAlarm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sendToNextion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +50,10 @@
     <ClCompile Include="Led.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="Nextion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LogicAlarm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sendToNextion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,9 +15,7 @@
 class LogicAlarm {
 public:
 	int statusAlarm = 0;
-	int statusBefore = 0;
-	int alarmDelay = 0;
-	
+	int statusBefore = 0;	
 	void logicAlarm(int mK, Button* bn, Sonar so);
 };
 
