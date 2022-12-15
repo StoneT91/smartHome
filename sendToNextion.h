@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 #include "LogicAlarm.h"
-void sendToNextion(LogicAlarm la);
+void sendToNextion(LogicAlarm la, Button bn);
 
 #endif
 

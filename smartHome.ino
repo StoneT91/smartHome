@@ -22,15 +22,17 @@ void setup() {
 }
 void loop() {
 	bn.readSerialInterface();
-	//if (bn.buttonValue[1] != 0 || bn.buttonValue[2]!=0) {
-		//sendToNextion(la);
-	//}
+
 	la.logicAlarm(masterKey, &bn, so);
+	if (la.statusAlarm!=la.statusBefore) {
+		sendToNextion(la, bn);
+	}
 	updateLed(la.statusAlarm);
 	buzzer(la.statusAlarm);
-	Serial.println(la.statusAlarm);
-	Serial.println(bn.buttonValue[1]);
-	//delay(1000);
+	
+	
+	//Serial.println(la.statusAlarm);
+	//Serial.println(bn.buttonValue[1]);
 
 
 

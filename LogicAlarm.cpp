@@ -1,8 +1,10 @@
 #include "LogicAlarm.h"
 
 void LogicAlarm::logicAlarm(int mK,Button *bn, Sonar so) {
+	statusBefore = statusAlarm;
 	if (statusAlarm == 0 && bn->buttonValue[1] != 0) {
-		bn->buttonValue[1] = 0;
+		alarmDelay = bn->buttonValue[1];
+		//bn->buttonValue[1] = 0;
 		statusAlarm = 1;
 	}
 	else if (statusAlarm == 1 && bn->buttonValue[1] != 0){
