@@ -20,7 +20,7 @@ public:
 	int val;
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
-	void readSerialInterface(int temp);
+	void readSerialInterface();
 };
 
 #endif

@@ -6,121 +6,257 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: ESP32 Wrover Kit (all versions)                                                                                           (esp32_esp32wroverkit), Platform=esp32, Package=esp32
+	Hardware: Arduino Due (Programming Port)                                                                                       (arduino_due_x_dbg), Platform=sam, Package=arduino
 */
 
 #if defined(_VMICRO_INTELLISENSE)
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
-#define __ESP32_esp32__ 1
-#define __ESP32_ESP32__ 1
-#define HAVE_CONFIG_H 1
-#define MBEDTLS_CONFIG_FILE "mbedtls/esp_config.h"
-#define UNITY_INCLUDE_CONFIG_H 1
-#define WITH_POSIX 1
-#define _GNU_SOURCE 1
-#define IDF_VER "v4.4.2"
-#define ESP_PLATFORM 1
-#define _POSIX_READER_WRITER_LOCKS 1
-#define F_CPU 240000000L
+#define F_CPU 84000000L
 #define ARDUINO 108010
-#define ARDUINO_ESP32_WROVER_KIT 1
-#define ARDUINO_ARCH_ESP32 1
-#define ARDUINO_BOARD "ESP32_WROVER_KIT"
-#define ARDUINO_VARIANT "esp32"
-#define ARDUINO_PARTITION_default 1
-#define ESP32 1
-#define CORE_DEBUG_LEVEL 0
-#define BOARD_HAS_PSRAM 1
-#define ARDUINO_USB_CDC_ON_BOOT 0
+#define ARDUINO_SAM_DUE 1
+#define ARDUINO_ARCH_SAM 1
+#define __SAM3X8E__ 1
+#define USB_VID 0x2341
+#define USB_PID 0x003e
+#define USBCON 1
+#define USB_MANUFACTURER "\"Arduino
+#define USB_PRODUCT "\"Arduino
 #define __cplusplus 201103L
+#ifdef __CLEARCORE__
+#define __ARMCC_VERSION 6010050
+#define HIDE_FROM_DOXYGEN
+#endif
 
 #define _Pragma(x)
-#undef __cplusplus
-#define __cplusplus 201103L
-
-#define __STDC__
 #define __ARM__
 #define __arm__
 #define __inline__
-#define __asm__(...)
+#define __asm__(x)
 #define __extension__
 #define __ATTR_PURE__
 #define __ATTR_CONST__
+#define __inline__
 #define __volatile__
-
+#define _HAVE_STDC
 #define __ASM
 #define __INLINE
+#define __builtin_va_list void
+
 #define __attribute__(noinline)
-
-//#define _STD_BEGIN
-//#define EMIT
-#define WARNING
-#define _Lockit
-#define __CLR_OR_THIS_CALL
-#define C4005
-//#define _NEW
-
-typedef bool _bool;
-typedef int _read;
-typedef int _seek;
-typedef int _write;
-typedef int _close;
-typedef int __cleanup;
-
-//#define inline 
-
-#define __builtin_clz
-#define __builtin_clzl
-#define __builtin_clzll
-#define __builtin_labs
-#define __builtin_va_list
-typedef int __gnuc_va_list;
-
-#define __ATOMIC_ACQ_REL
-
-#define __CHAR_BIT__
-#define _EXFUN()
 
 typedef unsigned char byte;
 extern "C" void __cxa_pure_virtual() {;}
 
-typedef long __INTPTR_TYPE__ ;
-typedef long __UINTPTR_TYPE__ ;
-//typedef long __SIZE_TYPE__ 	;
-#define __SIZE_TYPE__ unsigned int
-typedef long __PTRDIFF_TYPE__;
+#define __INTPTR_TYPE__ long
+#define __INT32_TYPE__ long
+#define __UINTPTR_TYPE__ long
+#define __UINT32_TYPE__ long
+#define _Pragma(x) pragma
 
-typedef long pthread_t;
-typedef long pthread_key_t;
-typedef long pthread_once_t;
-typedef long pthread_mutex_t;
-typedef long pthread_mutex_t;
-typedef long pthread_cond_t;
 
-#define __CHAR_BIT__ 1
+#if (defined(ARDUINO_SAM_DUE))
+	#include "sam3xa.h"
+#endif
 
-// Ensure ArduinoJSON Lib Intellisense works correctly
-#define ARDUINOJSON_ENABLE_STD_STREAM 0
-
-class VM_DBG {
-public:
-	// Send a Message to the Serial Monitor via WiFi Connection 
-	void sendUserMessage(const char* theMessage) {};
-} MicroDebug;
 #include <arduino.h>
 #include <pins_arduino.h> 
+#include <variant.h> 
+#include <variant.cpp> 
+# define cli()  __asm__ __volatile__ ("cli" ::: "memory")
+# define sei()  __asm__ __volatile__ ("sei" ::: "memory")
 
-#define interrupts() sei()
-#define noInterrupts() cli()
+/* GNU gcc specific functions */
+/** \brief  Enable IRQ Interrupts
 
-#define ESP_LOGI(tag, ...)
+This function enables IRQ interrupts by clearing the I-bit in the CPSR.
+Can only be executed in Privileged modes.
+*/
+__attribute__((always_inline)) static __INLINE void __enable_irq(void)
+{
+	//__ASM volatile ("cpsie i");
+}
 
-// Read Value from Register
-#define READ_PERI_REG(addr)
-// Write Value to Register
-#define WRITE_PERI_REG(addr,val)
+
+/** \brief  Disable IRQ Interrupts
+
+This function disables IRQ interrupts by setting the I-bit in the CPSR.
+Can only be executed in Privileged modes.
+*/
+__attribute__((always_inline)) static __INLINE void __disable_irq(void)
+{
+	//__ASM volatile ("cpsid i");
+}
+
+#ifndef __CLEARCORE__
+/** \brief  Get Control Register
+
+This function returns the content of the Control Register.
+
+\return               Control Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_CONTROL(void)
+{
+	uint32_t result;
+
+	//__ASM volatile ("MRS %0, control" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Set Control Register
+
+This function writes the given value to the Control Register.
+
+\param [in]    control  Control Register value to set
+*/
+__attribute__((always_inline)) static __INLINE void __set_CONTROL(uint32_t control)
+{
+	//__ASM volatile ("MSR control, %0" : : "r" (control));
+}
+
+
+/** \brief  Get ISPR Register
+
+This function returns the content of the ISPR Register.
+
+\return               ISPR Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_IPSR(void)
+{
+	uint32_t result;
+
+	//__ASM volatile ("MRS %0, ipsr" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Get APSR Register
+
+This function returns the content of the APSR Register.
+
+\return               APSR Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_APSR(void)
+{
+	uint32_t result;
+
+	//__ASM volatile ("MRS %0, apsr" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Get xPSR Register
+
+This function returns the content of the xPSR Register.
+
+\return               xPSR Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_xPSR(void)
+{
+	uint32_t result;
+
+	//__ASM volatile ("MRS %0, xpsr" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Get Process Stack Pointer
+
+This function returns the current value of the Process Stack Pointer (PSP).
+
+\return               PSP Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_PSP(void)
+{
+	register uint32_t result;
+
+	//__ASM volatile ("MRS %0, psp\n"  : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Set Process Stack Pointer
+
+This function assigns the given value to the Process Stack Pointer (PSP).
+
+\param [in]    topOfProcStack  Process Stack Pointer value to set
+*/
+__attribute__((always_inline)) static __INLINE void __set_PSP(uint32_t topOfProcStack)
+{
+	//__ASM volatile ("MSR psp, %0\n" : : "r" (topOfProcStack));
+}
+
+
+/** \brief  Get Main Stack Pointer
+
+This function returns the current value of the Main Stack Pointer (MSP).
+
+\return               MSP Register value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_MSP(void)
+{
+	register uint32_t result;
+
+	//__ASM volatile ("MRS %0, msp\n" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Set Main Stack Pointer
+
+This function assigns the given value to the Main Stack Pointer (MSP).
+
+\param [in]    topOfMainStack  Main Stack Pointer value to set
+*/
+__attribute__((always_inline)) static __INLINE void __set_MSP(uint32_t topOfMainStack)
+{
+	//__ASM volatile ("MSR msp, %0\n" : : "r" (topOfMainStack));
+}
+
+
+/** \brief  Get Priority Mask
+
+This function returns the current state of the priority mask bit from the Priority Mask Register.
+
+\return               Priority Mask value
+*/
+__attribute__((always_inline)) static __INLINE uint32_t __get_PRIMASK(void)
+{
+	uint32_t result;
+
+	//__ASM volatile ("MRS %0, primask" : "=r" (result));
+	return(result);
+}
+
+
+/** \brief  Set Priority Mask
+
+This function assigns the given value to the Priority Mask Register.
+
+\param [in]    priMask  Priority Mask
+*/
+__attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMask)
+{
+	//__ASM volatile ("MSR primask, %0" : : "r" (priMask));
+}
+#else
+// Additions for Clear Core to reduce errors
+
+class ShiftRegister { public: enum Masks {};   Masks m_ledMask; };
+class PeripheralRoute {};
+class BlinkCodeDriver {
+public:
+	friend class StatusManager;
+	typedef enum {
+	} BlinkCodeGroups;
+};
+typedef enum {
+} DmaChannels;
+class Iir16 {};
+#endif
+
 #include "smartHome.ino"
 #endif
 #endif

@@ -1,17 +1,9 @@
-// 
-// 
-// 
-
 #include "Button.h"
 
-void Button::readSerialInterface(int temp) {
-	data = "";
+void Button::readSerialInterface() {
 	if (Serial2.available()) {
 		data += char(Serial2.read());
-		if (data.substring(0,1) =="b") {
-			for (int i = 0; i < stringLength-1; i++) {
-				data += char(Serial2.read());
-			}
+		if (data.substring(0,1) =="b" && data.length() <= 9) {
 			if (data.length() == stringLength) {
 				value.charByte[0] = char(data[1]);
 				value.charByte[1] = char(data[2]);
@@ -27,8 +19,6 @@ void Button::readSerialInterface(int temp) {
 
 				buttonValue[num] = val;
 				Serial.println(buttonValue[num]);
-			}
-			else {
 				data = "";
 			}
 		}

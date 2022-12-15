@@ -2,8 +2,8 @@
 //#include "Logic.h"
 
 void updateLed(int sA) {
-	int pinLedGreen = 25;
-	int pinLedRed = 27;
+	int pinLedGreen = 4; //25
+	int pinLedRed = 5; //27
 	pinMode(pinLedGreen, OUTPUT);
 	pinMode(pinLedRed, OUTPUT);
 
