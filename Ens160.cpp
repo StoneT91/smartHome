@@ -31,7 +31,7 @@ void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
 			ENS160.setPWRMode(ENS160_STANDARD_MODE);
 		}
 		uint8_t Status = ENS160.getENS160Status();
-		if(Status == 2){
+		if(Status == 2 && counter >= 12){
 			if (NO_ERR == ENS160.begin()) {
 				uint8_t AQI = ENS160.getAQI();
 				uint16_t TVOC = ENS160.getTVOC();

@@ -96,15 +96,15 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			Serial2.print((int)ah->currentValueAht2x[1]);
 			reset();
 			//ENS160======================================================================
-			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
-			reset();
 			Serial2.print("Voc.txt=" + cmd + (int)en->currentValueEns160[1] + cmd);
+			reset();
+			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
 			reset();
 			Serial2.print("AirQualitySign.val=");
 			Serial2.print(120-(((int)en->currentValueEns160[0])*20));
 			reset();
 			Serial2.print("VocSign.val=");
-			Serial2.print((int)en->currentValueEns160[1]);
+			Serial2.print(((int)en->currentValueEns160[1]) / 20);
 			reset();
 			Serial2.print("Co2Sign.val=");
 			Serial2.print((((int)en->currentValueEns160[2]) / 20));
