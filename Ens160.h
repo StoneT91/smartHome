@@ -1,7 +1,7 @@
-// gasSensorEns160.h
+// Ens160.h
 
-#ifndef _GASSENSORENS160_h
-#define _GASSENSORENS160_h
+#ifndef _Ens160_h
+#define _Ens160_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -9,15 +9,13 @@
 	#include "WProgram.h"
 #endif
 
+#include "SparkFun_ENS160.h"
 
 
-#include <DFRobot_ENS160.h>
-
-
-
-
-class gasSensorEns160 {
+class Ens160 {
 public:
+	//SparkFun_ENS160 myENS;
+	//int ensStatus;
 	void measureEns160(int cRT, int dly);
 	float currentValueEns160[3] = {};
 	int updateTimeEns160 = 0;

@@ -1,3 +1,19 @@
+/**
+ * \brief	measure AHT2x Sensor (temperature, humitidy)
+ * if the sensor is available, the function will read the current sensorvalues.
+ * if the sensor is not available, the function will print an default value of "-99"
+ *
+ * \author	Timo Steiner
+ *
+ * \date	16.12.2022
+ *
+ * \param	cRT = current runtime of the system
+ * \param	dly = break time between measures
+ *
+ * \return	void --> prints sensorresult directly in an Array in the class "AHT2x"
+ */
+
+
 #include "AHT2x.h"
 Adafruit_AHTX0 aht;
 

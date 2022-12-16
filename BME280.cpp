@@ -1,3 +1,18 @@
+/**
+ * \brief	measure BME280 Sensor (temperature, humitidy, pressure)
+ * if the sensor is available, the function will read the current sensorvalues.
+ * if the sensor is not available, the function will print an default value of "-99"
+ * 
+ * \author	Timo Steiner
+ * 
+ * \date	16.12.2022
+ * 
+ * \param	cRT = current runtime of the system
+ * \param	dly = break time between measures 
+ * 
+ * \return	void --> prints sensorresult directly in an Array in the class "BME280"
+ */
+
 #include "BME280.h"
 
 void BME280::measureBme280(int cRT, int dly) {

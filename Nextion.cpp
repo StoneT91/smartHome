@@ -1,6 +1,22 @@
+/**
+ * \brief	communicates with the display / touch panel 
+ * if a signal at the serial interface is available the function will read the signal and store it in an array (buttonValue)
+ * if there is no signal at the serial interface available the function will update the values at display (sending values)
+ *
+ * \author	Timo Steiner
+ *
+ * \date	16.12.2022
+ * 
+ * \param	sA = statusAlarm
+ * \param	cRT = current runtime of the system
+ * \param	bm = current values from BME280 sensor
+ *
+ * \return	void
+ */
+
 #include "Nextion.h"
 
-void Nextion::serialInterface(int Alarm, int cRT, BME280* bm) {
+void Nextion::serialInterface(int sA, int cRT, BME280* bm) {
 	if (Serial2.available()) {
 		//receive============================================================================================
 		data += char(Serial2.read());
@@ -28,7 +44,7 @@ void Nextion::serialInterface(int Alarm, int cRT, BME280* bm) {
 	}
 	else {
 		//send============================================================================================
-		if (Alarm == 1 && buttonValue[1] != 0) {
+		if (sA == 1 && buttonValue[1] != 0) {
 			Serial.println(buttonValue[1]);
 			for (int i = 0; i < 100; i++) {
 				Serial2.print("j0.val=");
@@ -43,7 +59,7 @@ void Nextion::serialInterface(int Alarm, int cRT, BME280* bm) {
 		}
 		if (cRT - updateTimeNextion > 500) {
 			updateTimeNextion = millis();
-			if (Alarm != 0) {
+			if (sA != 0) {
 				Serial2.print("j3.val=");
 				Serial2.print(100);
 				reset();
