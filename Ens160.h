@@ -17,7 +17,7 @@ class Ens160 {
 public:
 	//int ensStatus;
 	void measureEns160(int cRT, int dly);
-	float currentValueEns160[3] = {};
+	float currentValueEns160[4] = {};
 	int updateTimeEns160 = 0;
 };
 
