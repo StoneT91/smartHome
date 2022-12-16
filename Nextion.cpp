@@ -1,6 +1,6 @@
 #include "Nextion.h"
 
-void Nextion::serialInterface(int Alarm, int cRT) {
+void Nextion::serialInterface(int Alarm, int cRT, BME280* bm) {
 	if (Serial2.available()) {
 		//receive============================================================================================
 		data += char(Serial2.read());
@@ -54,11 +54,17 @@ void Nextion::serialInterface(int Alarm, int cRT) {
 				reset();
 			}
 			//BME280======================================================================0
-			Serial2.print("tempInside.txt=" + cmd + 0 + cmd); //
+			Serial2.print("tempInside.txt=" + cmd + bm->currentValueBme280[0] + cmd); //
 			reset();
-			Serial2.print("humInside.txt=" + cmd + 1 + cmd);
+			Serial2.print("humInside.txt=" + cmd + bm->currentValueBme280[1] + cmd);
 			reset();
-			Serial2.print("presInside.txt=" + cmd + 2 + cmd);
+			Serial2.print("presInside.txt=" + cmd + bm->currentValueBme280[2] + cmd);
+			reset();
+			Serial2.print("tempSignInside.val=");
+			Serial2.print((int)bm->currentValueBme280[0] * 3);
+			reset();
+			Serial2.print("humSignInside.val=");
+			Serial2.print((int)bm->currentValueBme280[1]);
 			reset();
 		}
 	}

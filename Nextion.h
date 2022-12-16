@@ -19,7 +19,7 @@ public:
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 	int updateTimeNextion = 0;
-	void serialInterface(int Alarm, int cRT);
+	void serialInterface(int Alarm, int cRT, BME280* bm);
 	void reset();
 	String cmd = "\"";
 };
