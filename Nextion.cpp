@@ -16,7 +16,7 @@
 
 #include "Nextion.h"
 
-void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah) {
+void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en) {
 	if (Serial2.available()) {
 		//receive============================================================================================
 		data += char(Serial2.read());
@@ -69,12 +69,14 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah) {
 				Serial2.print(0);
 				reset();
 			}
-			//BME280======================================================================0
+			//BME280======================================================================
 			Serial2.print("tempOutside.txt=" + cmd + bm->currentValueBme280[0] + cmd);
 			reset();
 			Serial2.print("humOutside.txt=" + cmd + bm->currentValueBme280[1] + cmd);
 			reset();
-			Serial2.print("presOutside.txt=" + cmd + bm->currentValueBme280[2] + cmd);
+			Serial2.print("presOutside.txt=" + cmd + (int)bm->currentValueBme280[2] + cmd);
+			reset();
+			Serial2.print("Altitude.txt=" + cmd + (int)bm->currentValueBme280[3] + " m" + cmd);
 			reset();
 			Serial2.print("tempSignOuts.val=");
 			Serial2.print((int)bm->currentValueBme280[0] * 3);
@@ -82,7 +84,7 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah) {
 			Serial2.print("humSignOutside.val=");
 			Serial2.print((int)bm->currentValueBme280[1]);
 			reset();
-
+			//AHT2x======================================================================
 			Serial2.print("tempInside.txt=" + cmd + ah->currentValueAht2x[0] + cmd);
 			reset();
 			Serial2.print("humInside.txt=" + cmd + ah->currentValueAht2x[1] + cmd);
@@ -92,6 +94,20 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah) {
 			reset();
 			Serial2.print("humSignInside.val=");
 			Serial2.print((int)ah->currentValueAht2x[1]);
+			reset();
+			//ENS160======================================================================
+			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
+			reset();
+			Serial2.print("Voc.txt=" + cmd + (int)en->currentValueEns160[1] + cmd);
+			reset();
+			Serial2.print("AirQualitySign.val=");
+			Serial2.print(120-(((int)en->currentValueEns160[0])*20));
+			reset();
+			Serial2.print("VocSign.val=");
+			Serial2.print((int)en->currentValueEns160[1]);
+			reset();
+			Serial2.print("Co2Sign.val=");
+			Serial2.print((((int)en->currentValueEns160[2]) / 20));
 			reset();
 		}
 	}

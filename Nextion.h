@@ -8,6 +8,7 @@
 #endif
 #include "BME280.h"
 #include "AHT2x.h"
+#include "Ens160.h"
 class Nextion {
 public:
 	String data;
@@ -20,7 +21,7 @@ public:
 	int stringLength = 9;
 	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
 	int updateTimeNextion = 0;
-	void serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah);
+	void serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en);
 	void reset();
 	String cmd = "\"";
 };

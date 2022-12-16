@@ -8,12 +8,14 @@
 #else
 	#include "WProgram.h"
 #endif
+#define SEALEVELPRESSURE_HPA (1013.25)
 #include <Adafruit_BME280.h>
 class BME280 {
 public:
 	Adafruit_BME280 bme280;
 	void measureBme280(int cRT, int dly);
-	float currentValueBme280[3] = {};
+	float currentValueBme280[4] = {};
 	int updateTimeBME280 = 0;
+
 };
 #endif

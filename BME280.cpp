@@ -21,6 +21,7 @@ void BME280::measureBme280(int cRT, int dly) {
 			currentValueBme280[0] = bme280.readTemperature();
 			currentValueBme280[1] = bme280.readHumidity();
 			currentValueBme280[2] = bme280.readPressure() / 100;
+			currentValueBme280[3] = bme280.readAltitude(SEALEVELPRESSURE_HPA);
 		}
 		else {
 			currentValueBme280[0] = -99;

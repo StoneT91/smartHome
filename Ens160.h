@@ -9,16 +9,14 @@
 	#include "WProgram.h"
 #endif
 
-//#include <Wire.h>
 #include <DFRobot_ENS160.h>
-
-
+#include "AHT2x.h"
 class Ens160 {
 public:
-	//int ensStatus;
-	void measureEns160(int cRT, int dly);
-	float currentValueEns160[4] = {};
+	void measureEns160(int cRT, int dly, Aht2x *ah);
+	float currentValueEns160[3] = {};
 	int updateTimeEns160 = 0;
+	int counter = 0;
 };
 
 #endif

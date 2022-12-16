@@ -29,11 +29,11 @@ void setup() {
 
 void loop() {
 	currentRunTime = millis();
-	nx.serialInterface(statusAlarm, currentRunTime, &bm, &ah);
+	nx.serialInterface(statusAlarm, currentRunTime, &bm, &ah, &en);
 	la.logicAlarm(masterKey, &nx, so);
 	bm.measureBme280(currentRunTime, 2000);
 	ah.measureAht2x(currentRunTime, 2000);
-	en.measureEns160(currentRunTime, 2000);
+	en.measureEns160(currentRunTime, 2000, &ah);
 	statusAlarm = la.statusAlarm;
 	for (int i = 0; i < 10; i++){
 		updateLed(la.statusAlarm);
