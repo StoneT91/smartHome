@@ -9,12 +9,12 @@
 	#include "WProgram.h"
 #endif
 
-#include "SparkFun_ENS160.h"
+//#include <Wire.h>
+#include <DFRobot_ENS160.h>
 
 
 class Ens160 {
 public:
-	//SparkFun_ENS160 myENS;
 	//int ensStatus;
 	void measureEns160(int cRT, int dly);
 	float currentValueEns160[3] = {};
@@ -22,4 +22,3 @@ public:
 };
 
 #endif
-

@@ -17,4 +17,3 @@ public:
 	int updateTimeBME280 = 0;
 };
 #endif
-

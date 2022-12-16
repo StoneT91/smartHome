@@ -12,7 +12,7 @@
 class Aht2x {
 public:
 	sensors_event_t humidity, temp;
-	void measureAHT2x(int cRT, int dly);
+	void measureAht2x(int cRT, int dly);
 	float currentValueAht2x[2] = {};
 	int updateTimeAht2x = 0;
 };

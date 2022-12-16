@@ -30,4 +30,3 @@ void BME280::measureBme280(int cRT, int dly) {
 		updateTimeBME280 = millis();
 	}
 }
-
