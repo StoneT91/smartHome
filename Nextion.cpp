@@ -59,14 +59,19 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 		}
 		if (cRT - updateTimeNextion > 500) {
 			updateTimeNextion = millis();
-			if (sA != 0) {
-				Serial2.print("j3.val=");
-				Serial2.print(100);
+			if (sA == 0) {
+				Serial2.print("AlarmStatus.pic=");
+				Serial2.print(50);
+				reset();
+			}
+			else if (sA == 1) {
+				Serial2.print("AlarmStatus.pic=");
+				Serial2.print(51);
 				reset();
 			}
 			else {
-				Serial2.print("j3.val=");
-				Serial2.print(0);
+				Serial2.print("AlarmStatus.pic=");
+				Serial2.print(52);
 				reset();
 			}
 			//BME280======================================================================

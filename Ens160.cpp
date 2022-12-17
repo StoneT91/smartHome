@@ -25,7 +25,7 @@
 
 void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
 	
-	ENS160.setTempAndHum(ah->currentValueAht2x[0],ah->currentValueAht2x[1]);
+	ENS160.setTempAndHum(25.0,50);
 	if ((cRT - updateTimeEns160) > dly) {
 		if (counter >= 10) {
 			ENS160.setPWRMode(ENS160_STANDARD_MODE);
