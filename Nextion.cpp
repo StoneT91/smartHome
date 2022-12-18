@@ -61,17 +61,17 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			updateTimeNextion = millis();
 			if (sA == 0) {
 				Serial2.print("AlarmStatus.pic=");
-				Serial2.print(50);
+				Serial2.print(0);
 				reset();
 			}
 			else if (sA == 1) {
 				Serial2.print("AlarmStatus.pic=");
-				Serial2.print(51);
+				Serial2.print(1);
 				reset();
 			}
 			else {
 				Serial2.print("AlarmStatus.pic=");
-				Serial2.print(52);
+				Serial2.print(2);
 				reset();
 			}
 			//BME280======================================================================
@@ -105,15 +105,36 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			reset();
 			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
 			reset();
-			Serial2.print("AirQualitySign.val=");
-			Serial2.print(120-(((int)en->currentValueEns160[0])*20));
-			reset();
-			Serial2.print("VocSign.val=");
-			Serial2.print(((int)en->currentValueEns160[1]) / 20);
-			reset();
-			Serial2.print("Co2Sign.val=");
-			Serial2.print((((int)en->currentValueEns160[2]) / 20));
-			reset();
+			if (en->currentValueEns160[0] == 1) {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(13);
+				reset();
+			}
+			else if (en->currentValueEns160[0] == 2) {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(12);
+				reset();
+			}
+			else if (en->currentValueEns160[0] == 3) {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(11);
+				reset();
+			}
+			else if (en->currentValueEns160[0] == 4) {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(10);
+				reset();
+			}
+			else if (en->currentValueEns160[0] == 5) {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(9);
+				reset();
+			}
+			else {
+				Serial2.print("AirQualitySign=");
+				Serial2.print(1);
+				reset();
+			}
 		}
 	}
 }
