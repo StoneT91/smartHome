@@ -31,18 +31,19 @@ void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
 			ENS160.setPWRMode(ENS160_STANDARD_MODE);
 		}
 		uint8_t Status = ENS160.getENS160Status();
-		if(Status == 2 && counter >= 14){
+		//if(Status == 2 && counter >= 14){
 			if (NO_ERR == ENS160.begin()) {
 				uint8_t AQI = ENS160.getAQI();
 				uint16_t TVOC = ENS160.getTVOC();
 				uint16_t ECO2 = ENS160.getECO2();
+				Serial.println(AQI);
 				currentValueEns160[0] = AQI;
 				currentValueEns160[1] = TVOC;
 				currentValueEns160[2] = ECO2;
-				ENS160.setPWRMode(ENS160_SLEEP_MODE);
+				//ENS160.setPWRMode(ENS160_SLEEP_MODE);
 				counter = 0;
 			}
-		}
+		//}
 		updateTimeEns160 = millis();
 		counter++;
 	}

@@ -13,7 +13,6 @@
  *
  * \return	void
  */
-
 #include "Nextion.h"
 void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en) {
 	if (Serial2.available()) {
@@ -47,7 +46,6 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			delayStatus = 0;
 		}
 		if (sA == 1) {
-			Serial.println(buttonValue[1]);
 			for (int i = 0; i < 100; i++) {
 				Serial2.print("j0.val=");
 				Serial2.print(i);
@@ -111,33 +109,33 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
 			reset();
 			if (en->currentValueEns160[0] == 1) {
-				Serial2.print("AirQualitySign=");
+				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(13);
 				reset();
 			}
 			else if (en->currentValueEns160[0] == 2) {
-				Serial2.print("AirQualitySign=");
+				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(12);
 				reset();
 			}
 			else if (en->currentValueEns160[0] == 3) {
-				Serial2.print("AirQualitySign=");
+				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(11);
 				reset();
 			}
 			else if (en->currentValueEns160[0] == 4) {
-				Serial2.print("AirQualitySign=");
+				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(10);
 				reset();
 			}
 			else if (en->currentValueEns160[0] == 5) {
-				Serial2.print("AirQualitySign=");
+				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(9);
 				reset();
 			}
 			else {
-				Serial2.print("AirQualitySign=");
-				Serial2.print(1);
+				Serial2.print("AirQualitySign.pic=");
+				Serial2.print(13);
 				reset();
 			}
 		}
