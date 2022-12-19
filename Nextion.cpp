@@ -80,7 +80,8 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			//BME280======================================================================
 			Serial2.print("tempOutside.txt=" + cmd + bm->currentValueBme280[0] + cmd);
 			reset();
-			Serial2.print("humOutside.txt=" + cmd + bm->currentValueBme280[1] + cmd);
+			Serial2.print("humOutside.val=");
+			Serial2.print((int)bm->currentValueBme280[1]);
 			reset();
 			Serial2.print("presOutside.txt=" + cmd + (int)bm->currentValueBme280[2] + cmd);
 			reset();
@@ -95,7 +96,8 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			//AHT2x======================================================================
 			Serial2.print("tempInside.txt=" + cmd + ah->currentValueAht2x[0] + cmd);
 			reset();
-			Serial2.print("humInside.txt=" + cmd + ah->currentValueAht2x[1] + cmd);
+			Serial2.print("humInside.val=");
+			Serial2.print((int)ah->currentValueAht2x[1]);
 			reset();
 			Serial2.print("tempSignInside.val=");
 			Serial2.print((int)ah->currentValueAht2x[0] * 3);

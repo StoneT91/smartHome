@@ -22,7 +22,6 @@ void LogicAlarm::logicAlarm(int mK,Nextion *nx, Sonar so) {
 	if (statusAlarm == 0 && nx->buttonValue[1] != 0) {
 		statusAlarm = 1;
 	}
-	
 	else if (statusAlarm == 1 && nx->delayStatus==2) {
 		statusAlarm = 2;
 	}
