@@ -23,10 +23,10 @@ void updateLed(int sA) {
 		digitalWrite(pinLedGreen, LOW);
 		digitalWrite(pinLedRed, LOW);
 	}
-	if (sA == 1) {
+	if (sA == 2) {
 		digitalWrite(pinLedGreen, HIGH);
 		digitalWrite(pinLedRed, LOW);
-	}if (sA == 2) {
+	}if (sA == 3) {
 		digitalWrite(pinLedGreen, LOW);
 		digitalWrite(pinLedRed, HIGH);
 	}

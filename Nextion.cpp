@@ -15,7 +15,6 @@
  */
 
 #include "Nextion.h"
-
 void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en) {
 	if (Serial2.available()) {
 		//receive============================================================================================
@@ -44,7 +43,10 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 	}
 	else {
 		//send============================================================================================
-		if (sA == 1 && buttonValue[1] != 0) {
+		if (sA==2) {
+			delayStatus = 0;
+		}
+		if (sA == 1) {
 			Serial.println(buttonValue[1]);
 			for (int i = 0; i < 100; i++) {
 				Serial2.print("j0.val=");
@@ -52,6 +54,7 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 				reset();
 				delay(buttonValue[1] * 10);
 			}
+			delayStatus = 2;
 			buttonValue[1] = 0;
 			Serial2.print("j0.val=");
 			Serial2.print(0);
@@ -64,7 +67,7 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 				Serial2.print(0);
 				reset();
 			}
-			else if (sA == 1) {
+			else if (sA == 1 || sA == 2) {
 				Serial2.print("AlarmStatus.pic=");
 				Serial2.print(1);
 				reset();

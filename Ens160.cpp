@@ -25,13 +25,13 @@
 
 void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
 	
-	ENS160.setTempAndHum(25.0,50);
+	ENS160.setTempAndHum(25.0,50.0);
 	if ((cRT - updateTimeEns160) > dly) {
 		if (counter >= 10) {
 			ENS160.setPWRMode(ENS160_STANDARD_MODE);
 		}
 		uint8_t Status = ENS160.getENS160Status();
-		if(Status == 2 && counter >= 12){
+		if(Status == 2 && counter >= 14){
 			if (NO_ERR == ENS160.begin()) {
 				uint8_t AQI = ENS160.getAQI();
 				uint16_t TVOC = ENS160.getTVOC();
