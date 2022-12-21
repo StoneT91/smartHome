@@ -32,7 +32,7 @@ void LogicAlarm::logicAlarm(int mK,Nextion *nx, Sonar so) {
 	else if (statusAlarm == 2 && nx->buttonValue[1] != 0) {
 		nx->buttonValue[1] = 0;
 	}
-	else if (statusAlarm == 2 && so.measure(2, 3, 500) != 500) {
+	else if (statusAlarm == 2 && so.measure(12, 14, 500) != 500) { //2 ,3 
 		statusAlarm = 3;
 	}
 	else if (statusAlarm == 2 && nx->buttonValue[2] != mK) {

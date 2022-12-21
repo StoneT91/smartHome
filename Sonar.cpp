@@ -22,11 +22,12 @@ int Sonar::measure(int tP, int eP, int mD) {
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     digitalWrite(trigPin, LOW);
+    //delayMicroseconds(2); 
     digitalWrite(trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
-    int time = pulseIn(echoPin, HIGH, 5000);
-    currentDistance = time * 0.1715;
+    int time = pulseIn(echoPin, HIGH, 5000); //5000
+    currentDistance = time * 0.034/2;
     if (currentDistance == 0) {
         currentDistance = maxDistance;
     }

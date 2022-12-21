@@ -14,8 +14,8 @@
 #include "Buzzer.h"
 
 void buzzer(int sA) {
+	int buzzer = 26; //30
 	if (sA == 3){
-		int buzzer = 6;
 		pinMode(buzzer, OUTPUT);
 		digitalWrite(buzzer, HIGH);
 		delay(1);

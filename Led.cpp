@@ -14,8 +14,8 @@
 #include "Led.h"
 
 void updateLed(int sA) {
-	int pinLedGreen = 4;
-	int pinLedRed = 5;
+	int pinLedGreen = 25; //4
+	int pinLedRed = 27; //5
 	pinMode(pinLedGreen, OUTPUT);
 	pinMode(pinLedRed, OUTPUT);
 
