@@ -16,6 +16,5 @@ public:
 	void measureBme280(int cRT, int dly);
 	float currentValueBme280[4] = {};
 	int updateTimeBME280 = 0;
-
 };
 #endif
