@@ -27,7 +27,7 @@ int currentRunTime;
 
 
 struct messageStruct {
-	char myString[32];
+	//char myString[32];
 	float tempOutside;
 	int humOutside;
 	int presOutside;
@@ -39,10 +39,9 @@ void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int d
 {
 	memcpy(&messageData, incomingData, sizeof(messageData));
 	Serial.println("Data received: " + String(dataLength));
-	Serial.println("String: " + String(messageData.myString));
-	Serial.println("Int: " + String(messageData.tempOutside));
-	Serial.println("Float: " + String(messageData.humOutside));
-	Serial.println("Bool: " + String(messageData.presOutside));
+	Serial.println("tempOutside " + String(messageData.tempOutside));
+	Serial.println("humOutside: " + String(messageData.humOutside));
+	Serial.println("presOutside: " + String(messageData.presOutside));
 	Serial.println("----------------------------");
 }
 
