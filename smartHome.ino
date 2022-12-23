@@ -48,7 +48,6 @@ void loop() {
 		updateLed(la.statusAlarm);
 		buzzer(la.statusAlarm);
 	}	
-	Serial.println(mob.currentValueBme280[0]);
 }
 
 void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength) {
