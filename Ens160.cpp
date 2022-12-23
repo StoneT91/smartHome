@@ -24,7 +24,6 @@
 #endif
 
 void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
-	
 	ENS160.setTempAndHum(25.0,50.0);
 	if ((cRT - updateTimeEns160) > dly) {
 		if (counter >= 10) {

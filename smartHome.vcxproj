@@ -111,10 +111,10 @@
     <ClInclude Include="AHT2x.h" />
     <ClInclude Include="Ens160.h" />
     <ClInclude Include="LogicAlarm.h" />
+    <ClInclude Include="ModuleOutsideBottom.h" />
     <ClInclude Include="Nextion.h" />
     <ClInclude Include="Sonar.h" />
     <ClInclude Include="Led.h" />
-    <ClInclude Include="wifiCommunication.h" />
     <ClInclude Include="__vm\.smartHome.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
@@ -123,10 +123,10 @@
     <ClCompile Include="AHT2x.cpp" />
     <ClCompile Include="Ens160.cpp" />
     <ClCompile Include="LogicAlarm.cpp" />
+    <ClCompile Include="ModuleOutsideBottom.cpp" />
     <ClCompile Include="Nextion.cpp" />
     <ClCompile Include="Sonar.cpp" />
     <ClCompile Include="Led.cpp" />
-    <ClCompile Include="wifiCommunication.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>

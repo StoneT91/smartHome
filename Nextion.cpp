@@ -14,7 +14,7 @@
  * \return	void
  */
 #include "Nextion.h"
-void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en) {
+void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en, ModuleOutsideBottom* mob) {
 	if (Serial2.available()) {
 		//receive============================================================================================
 		data += char(Serial2.read());
@@ -75,33 +75,33 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 				Serial2.print(2);
 				reset();
 			}
-			//BME280======================================================================
-			Serial2.print("tempOutside.txt=" + cmd + bm->currentValueBme280[0] + cmd);
+			//AirInsideBME280======================================================================
+			Serial2.print("tempOutside.txt=" + cmd + mob->currentValueBme280[0] + cmd);
 			reset();
 			Serial2.print("humOutside.val=");
-			Serial2.print((int)bm->currentValueBme280[1]);
+			Serial2.print((int)mob->currentValueBme280[1]);
 			reset();
-			Serial2.print("presOutside.txt=" + cmd + (int)bm->currentValueBme280[2] + cmd);
+			Serial2.print("presOutside.txt=" + cmd + (int)mob->currentValueBme280[2] + cmd);
 			reset();
-			Serial2.print("Altitude.txt=" + cmd + (int)bm->currentValueBme280[3] + " m" + cmd);
+			Serial2.print("Altitude.txt=" + cmd + (int)mob->currentValueBme280[3] + " m" + cmd);
 			reset();
 			Serial2.print("tempSignOuts.val=");
-			Serial2.print((int)bm->currentValueBme280[0] * 3);
+			Serial2.print((int)mob->currentValueBme280[0] * 3);
 			reset();
 			Serial2.print("humSignOutside.val=");
-			Serial2.print((int)bm->currentValueBme280[1]);
+			Serial2.print((int)mob->currentValueBme280[1]);
 			reset();
-			//AHT2x======================================================================
-			Serial2.print("tempInside.txt=" + cmd + ah->currentValueAht2x[0] + cmd);
+			//AirInsideBME280======================================================================
+			Serial2.print("tempInside.txt=" + cmd + bm->currentValueBme280[0] + cmd);
 			reset();
 			Serial2.print("humInside.val=");
-			Serial2.print((int)ah->currentValueAht2x[1]);
+			Serial2.print((int)bm->currentValueBme280[1]);
 			reset();
 			Serial2.print("tempSignInside.val=");
-			Serial2.print((int)ah->currentValueAht2x[0] * 3);
+			Serial2.print((int)bm->currentValueBme280[0] * 3);
 			reset();
 			Serial2.print("humSignInside.val=");
-			Serial2.print((int)ah->currentValueAht2x[1]);
+			Serial2.print((int)bm->currentValueBme280[1]);
 			reset();
 			//ENS160======================================================================
 			Serial2.print("Voc.txt=" + cmd + (int)en->currentValueEns160[1] + cmd);

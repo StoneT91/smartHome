@@ -45,7 +45,7 @@
     <ClInclude Include="Ens160.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wifiCommunication.h">
+    <ClInclude Include="ModuleOutsideBottom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClCompile Include="Ens160.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wifiCommunication.cpp">
+    <ClCompile Include="ModuleOutsideBottom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
