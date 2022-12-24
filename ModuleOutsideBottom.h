@@ -12,7 +12,7 @@
 #include <esp_now.h>
 class ModuleOutsideBottom {
 public:
-	float currentValueBme280[3];
+	float currentValueBme280[5];
 	//void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength);
 };
 

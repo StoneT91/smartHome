@@ -43,6 +43,7 @@ void loop() {
 	bm.measureBme280(currentRunTime, 2000);
 	ah.measureAht2x(currentRunTime, 2000);
 	en.measureEns160(currentRunTime, 2000, &ah);
+	Serial.println(mob.currentValueBme280[4]);
 	statusAlarm = la.statusAlarm;
 	for (int i = 0; i < 10; i++){
 		updateLed(la.statusAlarm);
@@ -57,5 +58,7 @@ void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int d
 	mob.currentValueBme280[0] = float(mob.currentValueBme280[0]);
 	mob.currentValueBme280[1] = float(mob.currentValueBme280[1]);
 	mob.currentValueBme280[2] = float(mob.currentValueBme280[2]);
+	mob.currentValueBme280[3] = float(mob.currentValueBme280[3]);
+	mob.currentValueBme280[4] = float(mob.currentValueBme280[4]);
 	Serial.println("----------------------------");
 }
