@@ -16,20 +16,20 @@ void Settings::setPasswort(Nextion* nx){
 
 
 
-void Settings::eepromWriteInt(int address, int number) {
-	EEPROM.write(address, (number >> 24) & 0xFF);
+void Settings::eepromWriteInt(int adr, int wert) {
+	byte low, high;
+	low = wert & 0xFF;
+	high = (wert >> 8) & 0xFF;
+	EEPROM.write(adr, low);
 	EEPROM.commit();
-	EEPROM.write(address + 1, (number >> 16) & 0xFF);
+	EEPROM.write(adr + 1, high);
 	EEPROM.commit();
-	EEPROM.write(address + 2, (number >> 8) & 0xFF);
-	EEPROM.commit();
-	EEPROM.write(address + 3, number & 0xFF);
-	EEPROM.commit();
+	return;
 }
 
-long Settings::eepromReadInt(int address) {
-		return ((long)EEPROM.read(address) << 24) +
-			((long)EEPROM.read(address + 1) << 16) +
-			((long)EEPROM.read(address + 2) << 8) +
-			(long)EEPROM.read(address + 3);
+int Settings::eepromReadInt(int adr) {
+	byte low, high;
+	low = EEPROM.read(adr);
+	high = EEPROM.read(adr + 1);
+	return low+((high << 8) & 0xFF00);
 }

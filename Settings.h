@@ -15,9 +15,8 @@ class Settings {
 public:
 	int masterKey = 1122;
 	void setPasswort(Nextion* nx);
-	void eepromWriteInt(int address, int number);
-	long eepromReadInt(int address);
-	int intData = 1024, getInt;
+	void eepromWriteInt(int adr, int wert);
+	int eepromReadInt(int adr);
 };
 
 #endif

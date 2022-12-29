@@ -39,9 +39,8 @@ void setup() {
 	}
 	esp_now_register_recv_cb((onDataReceive));
 	
-	set.eepromWriteInt(100, 123456);
-	
-	set.masterKey = EEPROM.read(100);
+	set.eepromWriteInt(0, 70);
+	set.masterKey = EEPROM.read(0);
 }
 
 void loop() {
