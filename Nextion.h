@@ -21,7 +21,7 @@ public:
 	int num;
 	int val;
 	int stringLength = 9;
-	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+	int buttonValue[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 }; //1:Activate Alarm; 2:Deactivate Alarm; 3:Activation Delay; 4:Old Passwort; 5:New Passwort; 6: Confirm new Passwort
 	int updateTimeNextion = 0;
 	void serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en, ModuleOutsideBottom* mob);
 	void reset();

@@ -15,8 +15,8 @@
  */
 #include "Nextion.h"
 void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en, ModuleOutsideBottom* mob) {
+	//receive============================================================================================
 	if (Serial2.available()) {
-		//receive============================================================================================
 		data += char(Serial2.read());
 		if (data.substring(0, 1) == "b" && data.length() <= 9) {
 			if (data.length() == stringLength) {
@@ -40,8 +40,8 @@ void Nextion::serialInterface(int sA, int cRT, BME280* bm, Aht2x* ah, Ens160* en
 			data = "";
 		}
 	}
+	//send============================================================================================
 	else {
-		//send============================================================================================
 		if (sA==2) {
 			delayStatus = 0;
 		}
