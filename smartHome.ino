@@ -29,7 +29,7 @@ int statusAlarm;
 int currentRunTime;
 
 void setup() {
-	EEPROM.begin(EEPROM_SIZE);
+	EEPROM.begin(2); //EEPROM_SIZE
 	Serial.begin(9600);
 	Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
 	WiFi.mode(WIFI_STA);
@@ -38,14 +38,12 @@ void setup() {
 		return;
 	}
 	esp_now_register_recv_cb((onDataReceive));
-	
-	set.eepromWriteInt(0, 70);
-	set.masterKey = EEPROM.read(0);
+	set.masterKey = set.eepromReadInt(0);
 }
 
 void loop() {
 	currentRunTime = millis();
-	//set.setPasswort(&nx);
+	set.setPasswort(&nx);
 	nx.serialInterface(statusAlarm, currentRunTime, &bm, &ah, &en, &mob);
 	la.logicAlarm(set.masterKey, &nx, so);
 	bm.measureBme280(currentRunTime, 2000);
@@ -57,7 +55,7 @@ void loop() {
 		updateLed(la.statusAlarm);
 		buzzer(la.statusAlarm);
 	}	
-	Serial.println(set.masterKey);
+	
 }
 
 void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength) {
