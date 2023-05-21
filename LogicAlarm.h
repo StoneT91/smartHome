@@ -15,7 +15,7 @@
 class LogicAlarm {
 public:
 	int statusAlarm = 0;
-	void logicAlarm(int mK, Nextion* nx, Sonar so);
+	void logicAlarm(int mK, Nextion* nx);
 };
 
 #endif

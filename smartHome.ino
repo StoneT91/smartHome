@@ -1,3 +1,5 @@
+#include "hardwareUpdate.h"
+#include "HC_SR501.h"
 #include "Settings.h"
 #include "ModuleOutsideBottom.h"
 #include "Ens160.h"
@@ -10,6 +12,7 @@
 #include "Buzzer.h"
 #include <esp_now.h>
 #include <WiFi.h>
+#include <ada>
 
 #define RXD2 32
 #define TXD2 33
@@ -24,12 +27,12 @@ Ens160 en;
 ModuleOutsideBottom mob;
 Settings set;
 
-
+bool TEST=false;
 int statusAlarm;
 int currentRunTime;
 
 void setup() {
-	EEPROM.begin(2); //EEPROM_SIZE
+	EEPROM.begin(2);
 	Serial.begin(9600);
 	Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
 	WiFi.mode(WIFI_STA);
@@ -37,25 +40,25 @@ void setup() {
 		Serial.println("Error init ESP-NOW");
 		return;
 	}
+	//set.eepromWriteInt(0, 1234); //Reset Passwort
 	esp_now_register_recv_cb((onDataReceive));
 	set.masterKey = set.eepromReadInt(0);
 }
 
 void loop() {
 	currentRunTime = millis();
-	set.setPasswort(&nx);
-	nx.serialInterface(statusAlarm, currentRunTime, &bm, &ah, &en, &mob);
-	la.logicAlarm(set.masterKey, &nx, so);
 	bm.measureBme280(currentRunTime, 2000);
 	ah.measureAht2x(currentRunTime, 2000);
 	en.measureEns160(currentRunTime, 2000, &ah);
-	//Serial.println(mob.currentValueBme280[4]);
-	statusAlarm = la.statusAlarm;
-	for (int i = 0; i < 10; i++){
-		updateLed(la.statusAlarm);
-		buzzer(la.statusAlarm);
-	}	
-	
+
+	set.setPasswort(&nx);
+	la.logicAlarm(set.masterKey, &nx);
+
+	hardwareUpdate(la.statusAlarm);
+	nx.serialInterface(la.statusAlarm, currentRunTime, &bm, &ah, &en, &mob);
+
+	Serial.println(so.measure(12,13,500));
+
 }
 
 void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength) {

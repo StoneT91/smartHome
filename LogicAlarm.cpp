@@ -17,8 +17,9 @@
  */
 
 #include "LogicAlarm.h"
+#include "HC_SR501.h"
 
-void LogicAlarm::logicAlarm(int mK,Nextion *nx, Sonar so) {
+void LogicAlarm::logicAlarm(int mK,Nextion *nx) {
 	if (statusAlarm == 0 && nx->buttonValue[1] != 0) {
 		statusAlarm = 1;
 	}
@@ -32,7 +33,7 @@ void LogicAlarm::logicAlarm(int mK,Nextion *nx, Sonar so) {
 	else if (statusAlarm == 2 && nx->buttonValue[1] != 0) {
 		nx->buttonValue[1] = 0;
 	}
-	else if (statusAlarm == 2 && so.measure(12, 14, 500) != 500) { //2 ,3 
+	else if (statusAlarm == 2 && getMovementDetection(14)) {	//so.measure(12, 14, 500) != 500
 		statusAlarm = 3;
 	}
 	else if (statusAlarm == 2 && nx->buttonValue[2] != mK) {
