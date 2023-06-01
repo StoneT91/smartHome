@@ -1,3 +1,4 @@
+#include "SR04T.h"
 #include "hardwareUpdate.h"
 #include "HC_SR501.h"
 #include "Settings.h"
@@ -12,7 +13,7 @@
 #include "Buzzer.h"
 #include <esp_now.h>
 #include <WiFi.h>
-#include <ada>
+#include <Adafruit_GFX.h>
 
 #define RXD2 32
 #define TXD2 33
@@ -26,6 +27,7 @@ Aht2x ah;
 Ens160 en;
 ModuleOutsideBottom mob;
 Settings set;
+SR04T sr;
 
 bool TEST=false;
 int statusAlarm;
@@ -57,7 +59,7 @@ void loop() {
 	hardwareUpdate(la.statusAlarm);
 	nx.serialInterface(la.statusAlarm, currentRunTime, &bm, &ah, &en, &mob);
 
-	Serial.println(so.measure(12,13,500));
+	Serial.println(sr.measure(13,12));
 
 }
 
