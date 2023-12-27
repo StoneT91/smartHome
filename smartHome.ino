@@ -1,3 +1,4 @@
+#include "Sensor.h"
 #include "SR04T.h"
 #include "hardwareUpdate.h"
 #include "HC_SR501.h"
@@ -19,6 +20,7 @@
 #define TXD2 33
 #define EEPROM_SIZE 1
 
+
 Nextion nx;
 Sonar so;
 LogicAlarm la;
@@ -29,9 +31,12 @@ ModuleOutsideBottom mob;
 Settings set;
 SR04T sr;
 
+SensorClass Sensor;
+
 bool TEST=false;
 int statusAlarm;
 int currentRunTime;
+uint16_t counter = 0U;
 
 void setup() {
 	EEPROM.begin(2);
@@ -48,19 +53,20 @@ void setup() {
 }
 
 void loop() {
-	currentRunTime = millis();
-	bm.measureBme280(currentRunTime, 2000);
-	ah.measureAht2x(currentRunTime, 2000);
-	en.measureEns160(currentRunTime, 2000, &ah);
+	//currentRunTime = millis();
+	//bm.measureBme280(currentRunTime, 2000);
+	//ah.measureAht2x(currentRunTime, 2000);
+	//en.measureEns160(currentRunTime, 2000, &ah);
 
-	set.setPasswort(&nx);
-	la.logicAlarm(set.masterKey, &nx);
+	//set.setPasswort(&nx);
+	//la.logicAlarm(set.masterKey, &nx);
 
-	hardwareUpdate(la.statusAlarm);
-	nx.serialInterface(la.statusAlarm, currentRunTime, &bm, &ah, &en, &mob);
+	//hardwareUpdate(la.statusAlarm);
+	nx.serialInterface(la.statusAlarm, counter, &Sensor, &ah, &en, &mob);
 
-	Serial.println(sr.measure(13,12));
-
+	//Serial.println(sr.measure(13,12));
+	Sensor.updateSensors(1, counter);
+	(counter == 65535) ? counter = 0U : counter++;
 }
 
 void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength) {
