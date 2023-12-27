@@ -62,10 +62,12 @@ void loop() {
 	//la.logicAlarm(set.masterKey, &nx);
 
 	//hardwareUpdate(la.statusAlarm);
-	nx.serialInterface(la.statusAlarm, counter, &Sensor, &ah, &en, &mob);
-
-	//Serial.println(sr.measure(13,12));
+	// 
+	//********************Update Sensors********************
 	Sensor.updateSensors(1, counter);
+	//********************Update Display********************
+	nx.serialInterface(la.statusAlarm, counter, &Sensor, &ah, &en, &mob);
+	
 	(counter == 65535) ? counter = 0U : counter++;
 }
 
