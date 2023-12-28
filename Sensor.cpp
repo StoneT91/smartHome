@@ -10,6 +10,7 @@
 		if ((counter%100)==0)
 		{
 			BME280();
+			ENS160();
 		}
 
 		if (page == 2)
@@ -36,6 +37,20 @@
 		}
 		temperatureInsideChanged = (std::abs(tmpFloat - temperatureInside) > 0.1) ? true : false;
 		humidityInsideChanged = (tmpIntegar != humidityInside) ? true : false;
+	}
+
+	void SensorClass::ENS160()
+	{
+		DFRobot_ENS160_I2C ENS160(&Wire, 0x53);
+		ENS160.setTempAndHum(temperatureInside, humidityInside);
+		ENS160.setPWRMode(ENS160_STANDARD_MODE);
+		uint8_t Status = ENS160.getENS160Status();
+		if (NO_ERR == ENS160.begin()) {
+			uint8_t AQI = ENS160.getAQI();
+			uint16_t TVOC = ENS160.getTVOC();
+			uint16_t ECO2 = ENS160.getECO2();
+		}
+		//ENS160.setPWRMode(ENS160_SLEEP_MODE);
 	}
 
 	void SensorClass::init()

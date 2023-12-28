@@ -36,12 +36,6 @@
     <ClInclude Include="LogicAlarm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BME280.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AHT2x.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ens160.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,12 +72,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LogicAlarm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BME280.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AHT2x.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Ens160.cpp">

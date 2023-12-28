@@ -4,9 +4,6 @@
 #include "HC_SR501.h"
 #include "Settings.h"
 #include "ModuleOutsideBottom.h"
-#include "Ens160.h"
-#include "AHT2x.h"
-#include "BME280.h"
 #include "LogicAlarm.h"
 #include "Nextion.h"
 #include "Sonar.h"
@@ -24,9 +21,6 @@
 Nextion nx;
 Sonar so;
 LogicAlarm la;
-BME280 bm;
-Aht2x ah;
-Ens160 en;
 ModuleOutsideBottom mob;
 Settings set;
 SR04T sr;
@@ -53,16 +47,10 @@ void setup() {
 }
 
 void loop() {
-	//currentRunTime = millis();
-	//bm.measureBme280(currentRunTime, 2000);
-	//ah.measureAht2x(currentRunTime, 2000);
-	//en.measureEns160(currentRunTime, 2000, &ah);
-
 	//set.setPasswort(&nx);
 	//la.logicAlarm(set.masterKey, &nx);
-
 	//hardwareUpdate(la.statusAlarm);
-	// 
+
 	//********************Update Sensors********************
 	Sensor.updateSensors(1, counter);
 	//********************Update Display********************

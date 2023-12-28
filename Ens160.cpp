@@ -23,7 +23,9 @@
 	DFRobot_ENS160_SPI ENS160(&SPI, csPin);
 #endif
 
-void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) {
+void Ens160::measureEns160(int cRT, int dly, Aht2x *ah) 
+{
+	DFRobot_ENS160_I2C ENS160(&Wire, 0x53);
 	ENS160.setTempAndHum(25.0,50.0);
 	if ((cRT - updateTimeEns160) > dly) {
 		if (counter >= 10) {

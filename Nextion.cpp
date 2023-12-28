@@ -77,17 +77,23 @@ void Nextion::serialInterface(int sA, uint16_t counter, SensorClass* Sensor, Aht
 				Serial2.print(2);
 				reset();
 			}
-			//AirOutsideBME280======================================================================
-			Serial2.print("tempOutside.txt=" + cmd + mob->currentValueBme280[0] + cmd);
-			reset();
-			Serial2.print("humOutside.val=");
-			Serial2.print((int)mob->currentValueBme280[1]);
-			reset();
-			Serial2.print("tempSignOuts.val=");
-			Serial2.print((int)mob->currentValueBme280[0] * 3);
-			reset();
+			//********************BME280 Outside********************
+			if (Sensor->temperatureOutsideChanged)
+			{
+				Serial2.print("tempOutside.txt=" + cmd + Sensor->temperatureOutside + cmd);
+				reset();
+				Serial2.print("tempSignOuts.val=");
+				Serial2.print((int8_t)Sensor->temperatureOutside * 3);
+				reset();
+			}
+			if (Sensor->humidityOutsideChanged)
+			{
+				Serial2.print("humOutside.val=");
+				Serial2.print((uint8_t)Sensor->humidityOutside);
+				reset();
+			}
 			
-			//AirInsideBME280======================================================================
+			//********************BME280 Inside********************
 			if (Sensor->temperatureInsideChanged)
 			{
 				Serial2.print("tempInside.txt=" + cmd + Sensor->temperatureInside + cmd);
