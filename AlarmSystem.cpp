@@ -16,8 +16,8 @@
  * \return	void --> prints the status in variable "statusAlarm"
  */
 
-#include "LogicAlarm.h"
-#include "HC_SR501.h"
+#include "AlarmSystem.h"
+#include "Sensor.h"
 
 void LogicAlarm::logicAlarm(int mK,Nextion *nx) {
 	if (statusAlarm == 0 && nx->buttonValue[1] != 0) {
@@ -33,7 +33,7 @@ void LogicAlarm::logicAlarm(int mK,Nextion *nx) {
 	else if (statusAlarm == 2 && nx->buttonValue[1] != 0) {
 		nx->buttonValue[1] = 0;
 	}
-	else if (statusAlarm == 2 && getMovementDetection(14)) {	//so.measure(12, 14, 500) != 500
+	else if (statusAlarm == 2 && Sensor.movementDetected) {
 		statusAlarm = 3;
 	}
 	else if (statusAlarm == 2 && nx->buttonValue[2] != mK) {

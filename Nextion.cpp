@@ -14,7 +14,7 @@
  * \return	void
  */
 #include "Nextion.h"
-void Nextion::serialInterface(int sA, uint16_t counter, SensorClass* Sensor, Aht2x* ah, Ens160* en, ModuleOutsideBottom* mob) {
+void Nextion::serialInterface(int sA, SensorClass* Sensor, ModuleOutsideBottom* mob) {
 	//receive============================================================================================
 	if (Serial2.available()) {
 		data += char(Serial2.read());
@@ -60,7 +60,7 @@ void Nextion::serialInterface(int sA, uint16_t counter, SensorClass* Sensor, Aht
 			Serial2.print(0);
 			reset();
 		}
-		if ((counter%25) == 0) {
+		//if ((millis() % 25) == 0) {
 			//updateTimeNextion = millis();
 			if (sA == 0) {
 				Serial2.print("AlarmStatus.pic=");
@@ -78,70 +78,66 @@ void Nextion::serialInterface(int sA, uint16_t counter, SensorClass* Sensor, Aht
 				reset();
 			}
 			//********************BME280 Outside********************
-			if (Sensor->temperatureOutsideChanged)
+			if (Sensor->valuesChangedBME280Outside)
 			{
 				Serial2.print("tempOutside.txt=" + cmd + Sensor->temperatureOutside + cmd);
 				reset();
 				Serial2.print("tempSignOuts.val=");
 				Serial2.print((int8_t)Sensor->temperatureOutside * 3);
 				reset();
-			}
-			if (Sensor->humidityOutsideChanged)
-			{
+
 				Serial2.print("humOutside.val=");
 				Serial2.print((uint8_t)Sensor->humidityOutside);
 				reset();
 			}
 			
 			//********************BME280 Inside********************
-			if (Sensor->temperatureInsideChanged)
+			if (Sensor->valuesChangedBME280Inside)
 			{
+				//********************Temperature********************
 				Serial2.print("tempInside.txt=" + cmd + Sensor->temperatureInside + cmd);
 				reset();
 				Serial2.print("tempSignInside.val=");
 				Serial2.print((int8_t)Sensor->temperatureInside * 3);
 				reset();
-			}
-			if (Sensor->humidityInsideChanged)
-			{
+				//********************Humidity********************
 				Serial2.print("humInside.val=");
 				Serial2.print((uint8_t)Sensor->humidityInside);
 				reset();
 				Serial2.print("humSignInside.val=");
 				Serial2.print((uint8_t)Sensor->humidityInside);
 				reset();
-			}
-			if ((counter % 500) == 0)
-			{
+				//********************Pressure********************
 				Serial2.print("presOutside.txt=" + cmd + (uint16_t)Sensor->pressureInside + cmd);
 				reset();
 			}
+			
 			//ENS160======================================================================
-			Serial2.print("Voc.txt=" + cmd + (int)en->currentValueEns160[1] + cmd);
+			Serial2.print("Voc.txt=" + cmd + (uint8_t)Sensor->TVOC + cmd);
 			reset();
-			Serial2.print("Co2.txt=" + cmd + (int)en->currentValueEns160[2] + cmd);
+			Serial2.print("Co2.txt=" + cmd + (uint8_t)Sensor->ECO2 + cmd);
 			reset();
-			if (en->currentValueEns160[0] == 1) {
+			if (Sensor->AQI == 1) {
 				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(13);
 				reset();
 			}
-			else if (en->currentValueEns160[0] == 2) {
+			else if (Sensor->AQI == 2) {
 				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(12);
 				reset();
 			}
-			else if (en->currentValueEns160[0] == 3) {
+			else if (Sensor->AQI == 3) {
 				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(11);
 				reset();
 			}
-			else if (en->currentValueEns160[0] == 4) {
+			else if (Sensor->AQI == 4) {
 				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(10);
 				reset();
 			}
-			else if (en->currentValueEns160[0] == 5) {
+			else if (Sensor->AQI == 5) {
 				Serial2.print("AirQualitySign.pic=");
 				Serial2.print(9);
 				reset();
@@ -151,9 +147,11 @@ void Nextion::serialInterface(int sA, uint16_t counter, SensorClass* Sensor, Aht
 				Serial2.print(13);
 				reset();
 			}
-		}
+		//}
 	}
 }
+
+
 
 void Nextion::reset() {
 	Serial2.write(0xFF);

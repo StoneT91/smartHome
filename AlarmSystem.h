@@ -9,7 +9,6 @@
 	#include "WProgram.h"
 #endif
 
-#include "Sonar.h"
 #include "Nextion.h"
 
 class LogicAlarm {

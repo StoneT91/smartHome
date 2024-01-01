@@ -1,12 +1,9 @@
 #include "Sensor.h"
-#include "SR04T.h"
 #include "hardwareUpdate.h"
-#include "HC_SR501.h"
 #include "Settings.h"
 #include "ModuleOutsideBottom.h"
-#include "LogicAlarm.h"
+#include "AlarmSystem.h"
 #include "Nextion.h"
-#include "Sonar.h"
 #include "Led.h"
 #include "Buzzer.h"
 #include <esp_now.h>
@@ -17,20 +14,15 @@
 #define TXD2 33
 #define EEPROM_SIZE 1
 
-
 Nextion nx;
-Sonar so;
 LogicAlarm la;
 ModuleOutsideBottom mob;
 Settings set;
-SR04T sr;
-
 SensorClass Sensor;
 
 bool TEST=false;
 int statusAlarm;
 int currentRunTime;
-uint16_t counter = 0U;
 
 void setup() {
 	EEPROM.begin(2);
@@ -47,26 +39,21 @@ void setup() {
 }
 
 void loop() {
-	//set.setPasswort(&nx);
-	//la.logicAlarm(set.masterKey, &nx);
-	//hardwareUpdate(la.statusAlarm);
+	set.setPasswort(&nx);
+	la.logicAlarm(set.masterKey, &nx);
+	hardwareUpdate(la.statusAlarm);
 
 	//********************Update Sensors********************
-	Sensor.updateSensors(1, counter);
+	Sensor.updateSensors(1);
 	//********************Update Display********************
-	nx.serialInterface(la.statusAlarm, counter, &Sensor, &ah, &en, &mob);
-	
-	(counter == 65535) ? counter = 0U : counter++;
+	nx.serialInterface(la.statusAlarm, &Sensor, &mob);
 }
 
 void onDataReceive(const uint8_t* macAddress, const uint8_t* incomingData, int dataLength) {
 	//DataStorage ds;
 	memcpy(&mob, incomingData, sizeof(mob));
 	Serial.println("Data received: " + String(dataLength));
-	mob.currentValueBme280[0] = float(mob.currentValueBme280[0]);
-	mob.currentValueBme280[1] = float(mob.currentValueBme280[1]);
-	mob.currentValueBme280[2] = float(mob.currentValueBme280[2]);
-	mob.currentValueBme280[3] = float(mob.currentValueBme280[3]);
-	mob.currentValueBme280[4] = float(mob.currentValueBme280[4]);
+	Sensor.temperatureOutside = float(mob.currentValueBme280[0]);
+	Sensor.humidityOutside = float(mob.currentValueBme280[1]);
 	Serial.println("----------------------------");
 }

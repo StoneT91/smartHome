@@ -18,9 +18,6 @@ void buzzer(int sA) {
 	if (sA == 3){
 		pinMode(buzzer, OUTPUT);
 		digitalWrite(buzzer, HIGH);
-		delay(1);
-		digitalWrite(buzzer, LOW);
-		delay(1);
 	}
 	else {
 		digitalWrite(buzzer, LOW);

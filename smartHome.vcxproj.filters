@@ -21,9 +21,6 @@
     <ClInclude Include="__vm\.smartHome.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sonar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Buzzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,10 +30,7 @@
     <ClInclude Include="Nextion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LogicAlarm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ens160.h">
+    <ClInclude Include="AlarmSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ModuleOutsideBottom.h">
@@ -45,13 +39,7 @@
     <ClInclude Include="Settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HC_SR501.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hardwareUpdate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SR04T.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sensor.h">
@@ -59,9 +47,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sonar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Buzzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,10 +56,7 @@
     <ClCompile Include="Nextion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LogicAlarm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ens160.cpp">
+    <ClCompile Include="AlarmSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ModuleOutsideBottom.cpp">
@@ -83,13 +65,7 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HC_SR501.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hardwareUpdate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SR04T.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sensor.cpp">
